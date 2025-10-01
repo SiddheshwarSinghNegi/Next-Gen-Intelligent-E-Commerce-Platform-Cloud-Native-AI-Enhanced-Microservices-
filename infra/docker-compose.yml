@@ -1,0 +1,22 @@
+version: '3.9'
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.1
+    environment: { ZOOKEEPER_CLIENT_PORT: 2181 }
+  kafka:
+    image: confluentinc/cp-kafka:7.5.1
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+  postgres:
+    image: postgres:16-alpine
+  mongo:
+    image: mongo:6
+  redis:
+    image: redis:7-alpine
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.14.2
+    environment: ['discovery.type=single-node','xpack.security.enabled=false']
+  grafana:
+    image: grafana/grafana-oss:latest
+  prometheus:
+    image: prom/prometheus:latest
